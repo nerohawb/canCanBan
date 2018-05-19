@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController, ToastController, reorderArray } from 'ionic-angular';
+
+import { TodoProvider } from "../../providers/todo/todo";
 
 @Component({
   selector: 'page-home',
@@ -7,8 +9,105 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  public todos = [];
+  public reorderIsEnabled = false;
+
+  constructor(
+    public navCtrl: NavController,
+    private todoService: TodoProvider,
+    private alertController: AlertController,
+    private toastController: ToastController) {
+      this.todos = this.todoService.getTodos();
 
   }
+
+  addToDoing(todoIndex) {
+    this.todoService.addDoing(todoIndex);
+  }
+
+  callDelete(todoIndex) {
+    this.todoService.deleteTodo(todoIndex);
+  }
+
+  toggleReorder(){
+    this.reorderIsEnabled = !this.reorderIsEnabled;
+  }
+
+  itemReorder($event) {
+    reorderArray(this.todos, $event);
+  }
+
+  openTodoWin() {
+    let addTodoWin = this.alertController.create({
+      title: "Add a Task",
+      message: "Enter Your Task",
+      inputs: [
+        {
+          type: "text",
+          name: "addTodoInput"
+        }
+      ],
+      buttons: [
+        {
+          text: "Cancel"
+      },
+      {
+        text: "Add",
+        handler: (inputData)=> {
+          let todoText = inputData.addTodoInput;
+          this.todoService.addTodo(todoText);
+
+          addTodoWin.onDidDismiss(()=> {
+            let addTodoToast = this.toastController.create({
+              message: "Lets Go!",
+              duration: 2000
+            });
+              addTodoToast.present();
+          });
+
+        }
+      }
+    ]
+    });
+    addTodoWin.present();
+  }
+
+ //  editTodo(todoIndex) {
+ //  let editTodoAlert = this.alertController.create({
+ //    title: "Edit A Todo",
+ //    message: "Enter Your Todo",
+ //    inputs: [
+ //      {
+ //        type: "text",
+ //        name: "editTodoInput",
+ //        value: this.todos[todoIndex]
+ //      }
+ //    ],
+ //    buttons: [
+ //      {
+ //        text: "Cancel"
+ //      },
+ //      {
+ //        text: "Edit Todo",
+ //        handler: (inputData)=> {
+ //          let todoText;
+ //          todoText = inputData.editTodoInput;
+ //          this.todoService.editTodo(todoText, todoIndex);
+ //
+ //          // Toast Alert Display
+ //          editTodoAlert.onDidDismiss(()=> {
+ //            let editTodoToast = this.toastController.create({
+ //              message: "Greate Job on Orginizing",
+ //              duration: 2000
+ //            });
+ //              editTodoToast.present();
+ //          });
+ //
+ //        }
+ //      }
+ //    ]
+ //  });
+ //   editTodoAlert.present();
+ // }
 
 }

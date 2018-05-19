@@ -3,21 +3,32 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+
+    <ion-buttons end>
+      <button (click)="toggleReorder()" ion-button *ngIf="!reorderIsEnabled">Edit</button>
+      <button (click)="toggleReorder()" ion-button *ngIf="reorderIsEnabled">Done</button>
+    </ion-buttons>
+
+    <ion-title>Doing</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
+<ion-content padding>
+  <ion-list [reorder]="reorderIsEnabled" (ionItemReorder)="itemReorder($event)">
+    <ion-item-sliding *ngFor="let doing of doings; let todoIndex = index">
+      <ion-item-options side="right">
+        <button color="danger" ion-button (click)="callDelete(todoIndex)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+
+      <ion-item-options side="left">
+        <button color="secondary" ion-button (click)="addToDone(todoIndex)">
+          <ion-icon name="md-checkmark"></ion-icon>
+        </button>
+      </ion-item-options>
+
+      <ion-item>{{ doing }}</ion-item>
+    </ion-item-sliding>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
