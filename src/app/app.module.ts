@@ -6,6 +6,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { TestingPage } from '../pages/testing/testing';
 import { DonePage } from '../pages/done/done';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,6 +18,7 @@ import { TodoProvider } from '../providers/todo/todo';
     MyApp,
     HomePage,
     ListPage,
+    TestingPage,
     DonePage
   ],
   imports: [
@@ -29,6 +31,7 @@ import { TodoProvider } from '../providers/todo/todo';
     MyApp,
     HomePage,
     ListPage,
+    TestingPage,
     DonePage
   ],
   providers: [

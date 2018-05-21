@@ -23,9 +23,19 @@
 
 
 <ion-content padding>
-  <ion-item-sliding *ngFor="let done of dones">
+  <ion-list [reorder]="reorderIsEnabled" (ionItemReorder)="itemReorder($event)">
+    <ion-item-sliding *ngFor="let done of dones">
+
+      <ion-item-options side="left">
+        <button color="primary" ion-button (click)="callDelete(todoIndex)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+
       <ion-item>{{ done }}</ion-item>
+
   </ion-item-sliding>
+</ion-list>
 
 
 </ion-content>

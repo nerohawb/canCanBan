@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, reorderArray } from 'ionic-angular';
+import { NavController, NavParams, reorderArray, ToastController } from 'ionic-angular';
 
 import { TodoProvider } from "../../providers/todo/todo";
 
@@ -11,7 +11,7 @@ export class ListPage {
 
   public doings = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private todoService: TodoProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private todoService: TodoProvider, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -20,19 +20,30 @@ export class ListPage {
 
   callDelete(todoIndex) {
     this.todoService.deleteDoing(todoIndex);
-  }
-
-  toggleReorder(){
-    this.reorderIsEnabled = !this.reorderIsEnabled;
+    let DeleteToast = this.toastCtrl.create({
+      message: "Shit Happens",
+      duration: 2000
+    });
+      DeleteToast.present();
   }
 
   addToDone(todoIndex) {
     this.todoService.addDones(todoIndex);
+    let toast = this.toastCtrl.create({
+      message: 'Good Job! Keep it up',
+      duration: 2000,
+    });
+
+    toast.present();
+
   }
 
   itemReorder($event) {
     reorderArray(this.doings, $event);
   }
 
+  toggleReorder(){
+    this.reorderIsEnabled = !this.reorderIsEnabled;
+  }
 
 }

@@ -23,10 +23,20 @@ export class HomePage {
 
   addToDoing(todoIndex) {
     this.todoService.addDoing(todoIndex);
+    let addGoToast = this.toastController.create({
+      message: "Let's Go!",
+      duration: 2000
+    });
+      addGoToast.present();
   }
 
   callDelete(todoIndex) {
     this.todoService.deleteTodo(todoIndex);
+    let DeleteToast = this.toastController.create({
+      message: "Shit Happens",
+      duration: 2000
+    });
+      DeleteToast.present();
   }
 
   toggleReorder(){
@@ -59,7 +69,7 @@ export class HomePage {
 
           addTodoWin.onDidDismiss(()=> {
             let addTodoToast = this.toastController.create({
-              message: "Lets Go!",
+              message: "Plan Carefully",
               duration: 2000
             });
               addTodoToast.present();

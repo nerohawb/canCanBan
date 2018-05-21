@@ -55,4 +55,8 @@ export class TodoProvider {
     this.doings.splice(todoIndex,1);
   }
 
+  deleteDone(todoIndex) {
+    this.dones.splice(todoIndex,1);
+  }
+
 }
