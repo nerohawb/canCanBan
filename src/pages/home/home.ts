@@ -33,7 +33,7 @@ export class HomePage {
   callDelete(todoIndex) {
     this.todoService.deleteTodo(todoIndex);
     let DeleteToast = this.toastController.create({
-      message: "Shit Happens",
+      message: "Story Deleted",
       duration: 2000
     });
       DeleteToast.present();
@@ -49,8 +49,8 @@ export class HomePage {
 
   openTodoWin() {
     let addTodoWin = this.alertController.create({
-      title: "Add a Task",
-      message: "Enter Your Task",
+      title: "Add a Story",
+      message: "Enter Your Story",
       inputs: [
         {
           type: "text",
@@ -69,7 +69,7 @@ export class HomePage {
 
           addTodoWin.onDidDismiss(()=> {
             let addTodoToast = this.toastController.create({
-              message: "Plan Carefully",
+              message: "Story Added",
               duration: 2000
             });
               addTodoToast.present();

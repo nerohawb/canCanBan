@@ -10,6 +10,7 @@ import { TodoProvider } from "../../providers/todo/todo";
 export class ListPage {
 
   public doings = [];
+  public reorderIsEnabled = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private todoService: TodoProvider, private toastCtrl: ToastController) {
   }
@@ -21,16 +22,16 @@ export class ListPage {
   callDelete(todoIndex) {
     this.todoService.deleteDoing(todoIndex);
     let DeleteToast = this.toastCtrl.create({
-      message: "Shit Happens",
+      message: "Story Deleted",
       duration: 2000
     });
       DeleteToast.present();
   }
 
-  addToDone(todoIndex) {
-    this.todoService.addDones(todoIndex);
+  addToTest(todoIndex) {
+    this.todoService.addTestings(todoIndex);
     let toast = this.toastCtrl.create({
-      message: 'Good Job! Keep it up',
+      message: 'Ready for Testing',
       duration: 2000,
     });
 

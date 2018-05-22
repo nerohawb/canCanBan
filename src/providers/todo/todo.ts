@@ -11,6 +11,7 @@ import { Injectable } from '@angular/core';
 export class TodoProvider {
   private todos = [];
   private doings = [];
+  private testings = [];
   private dones = [];
 
   constructor(public http: HttpClient) {
@@ -25,15 +26,25 @@ export class TodoProvider {
     return this.doings;
   }
 
+  getTestings() {
+    return this.testings;
+  }
+
   getDones() {
     return this.dones;
   }
 
 
   addDones(todoIndex) {
-    let todoDoneAdded = this.doings[todoIndex];
-    this.doings.splice(todoIndex, 1);
+    let todoDoneAdded = this.testings[todoIndex];
+    this.testings.splice(todoIndex, 1);
     this.dones.push(todoDoneAdded);
+  }
+
+  addTestings(todoIndex) {
+    let todoTestAdded = this.doings[todoIndex];
+    this.doings.splice(todoIndex, 1);
+    this.testings.push(todoTestAdded);
   }
 
   addDoing(todoIndex) {
@@ -57,6 +68,10 @@ export class TodoProvider {
 
   deleteDone(todoIndex) {
     this.dones.splice(todoIndex,1);
+  }
+
+  deleteTesting(todoIndex) {
+    this.testings.splice(todoIndex, 1);
   }
 
 }

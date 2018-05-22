@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController, reorderArray } from 'ionic-angular';
 
+import { TodoProvider } from "../../providers/todo/todo";
 /**
  * Generated class for the TestingPage page.
  *
@@ -14,11 +15,45 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class TestingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public testings = [];
+  public reorderIsEnabled = false;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private todoService: TodoProvider,
+    private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TestingPage');
+      this.testings = this.todoService.getTestings();
+  }
+
+  addToDone(todoIndex) {
+    this.todoService.addDones(todoIndex);
+    let toast = this.toastCtrl.create({
+      message: 'Done Testing',
+      duration: 2000,
+    });
+
+    toast.present();
+
+  }
+
+  callDelete(todoIndex) {
+    this.todoService.deleteTesting(todoIndex);
+    let DeleteToast = this.toastCtrl.create({
+      message: "Story Deleted",
+      duration: 2000
+    });
+      DeleteToast.present();
+  }
+
+  itemReorder($event) {
+    reorderArray(this.testings, $event);
+  }
+
+  toggleReorder(){
+    this.reorderIsEnabled = !this.reorderIsEnabled;
   }
 
 }

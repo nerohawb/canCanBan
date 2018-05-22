@@ -12,12 +12,36 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
+    <ion-buttons end>
+      <button (click)="toggleReorder()" ion-button *ngIf="!reorderIsEnabled">Edit</button>
+      <button (click)="toggleReorder()" ion-button *ngIf="reorderIsEnabled">Done</button>
+    </ion-buttons>
+
     <ion-title>Testing</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
+
 <ion-content padding>
+
+  <ion-list [reorder]="reorderIsEnabled" (ionItemReorder)="itemReorder($event)">
+    <ion-item-sliding *ngFor="let testing of testings; let todoIndex = index">
+      <ion-item-options side="right">
+        <button color="danger" ion-button (click)="callDelete(todoIndex)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+
+      <ion-item-options side="left">
+        <button color="secondary" ion-button (click)="addToDone(todoIndex)">
+          <ion-icon name="md-checkmark"></ion-icon>
+        </button>
+      </ion-item-options>
+
+      <ion-item>{{ testing }}</ion-item>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>
