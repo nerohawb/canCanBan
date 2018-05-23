@@ -1,3 +1,3 @@
 # canCanBan
 
-A simple Kanban App using Ionic
+Your personal Kanban Board for your task scheduling
