@@ -9,10 +9,10 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class TodoProvider {
-  private todos = [];
-  private doings = [];
-  private testings = [];
-  private dones = [];
+  private todos:any = [];
+  private doings:any = [];
+  private testings:any = [];
+  private dones:any = [];
 
   constructor(public http: HttpClient) {
     console.log('Hello TodoProvider Provider');

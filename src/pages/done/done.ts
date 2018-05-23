@@ -16,7 +16,7 @@ import { TodoProvider } from "../../providers/todo/todo";
 })
 export class DonePage {
 
-  public dones = [];
+  public dones:any = [];
   public reorderIsEnabled = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private todoService: TodoProvider, private toastCtrl:ToastController) {
@@ -28,7 +28,7 @@ export class DonePage {
   }
 
   itemReorder($event) {
-    reorderArray(this.doings, $event);
+    reorderArray(this.dones, $event);
   }
 
   toggleReorder(){

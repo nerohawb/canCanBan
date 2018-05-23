@@ -9,7 +9,7 @@ import { TodoProvider } from "../../providers/todo/todo";
 })
 export class HomePage {
 
-  public todos = [];
+  public todos:any = [];
   public reorderIsEnabled = false;
 
   constructor(

@@ -15,7 +15,7 @@ import { TodoProvider } from "../../providers/todo/todo";
 })
 export class TestingPage {
 
-  public testings = [];
+  public testings:any = [];
   public reorderIsEnabled = false;
 
   constructor(public navCtrl: NavController,

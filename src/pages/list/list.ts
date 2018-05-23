@@ -9,7 +9,7 @@ import { TodoProvider } from "../../providers/todo/todo";
 })
 export class ListPage {
 
-  public doings = [];
+  public doings:any = [];
   public reorderIsEnabled = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private todoService: TodoProvider, private toastCtrl: ToastController) {
