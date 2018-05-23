@@ -9,12 +9,12 @@
   <ion-navbar>
 
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" color="primary"></ion-icon>
     </button>
 
     <ion-buttons end>
-      <button (click)="toggleReorder()" ion-button *ngIf="!reorderIsEnabled">Edit</button>
-      <button (click)="toggleReorder()" ion-button *ngIf="reorderIsEnabled">Done</button>
+      <button (click)="toggleReorder()" color="primary" ion-button *ngIf="!reorderIsEnabled">Edit</button>
+      <button (click)="toggleReorder()" color="primary" ion-button *ngIf="reorderIsEnabled">Done</button>
     </ion-buttons>
 
     <ion-title>Testing</ion-title>
